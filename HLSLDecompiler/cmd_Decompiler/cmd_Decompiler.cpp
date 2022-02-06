@@ -28,8 +28,8 @@ static void PrintHelp(int argc, char *argv[])
 	LogInfo("\t\t\tDecompile binary shaders with 3DMigoto's decompiler\n");
 
 	// We can do this via fxc easily enough for now, and would need to pass in the shader model:
-	// LogInfo("  -C, --compile\n");
-	// LogInfo("\t\t\tCompile binary shaders with Microsoft's compiler\n");
+	LogInfo("  -C, --compile\n");
+	LogInfo("\t\t\tCompile binary shaders with Microsoft's compiler\n");
 
 	LogInfo("  -d, --disassemble, --disassemble-flugan\n");
 	LogInfo("\t\t\tDisassemble binary shaders with Flugan's disassembler\n");
@@ -51,7 +51,7 @@ static void PrintHelp(int argc, char *argv[])
 	LogInfo("\t\t\tAssemble shaders with Flugan's assembler\n");
 
 	LogInfo("  --copy-reflection FILE\n");
-	LogInfo("\t\t\t\tCopy reflection & signature sections from FILE when assembling");
+	LogInfo("\t\t\t\tCopy reflection & signature sections from FILE when assembling\n");
 
 	// TODO (at the moment we always force):
 	// LogInfo("  -f, --force\n");
@@ -129,10 +129,10 @@ void parse_args(int argc, char *argv[])
 				args.decompile = true;
 				continue;
 			}
-			// if (!strcmp(arg, "-C") || !strcmp(arg, "--compile")) {
-			// 	args.compile = true;
-			// 	continue;
-			// }
+			if (!strcmp(arg, "-C") || !strcmp(arg, "--compile")) {
+				args.compile = true;
+				continue;
+			}
 			if (!strcmp(arg, "-d") || !strcmp(arg, "--disassemble") || !strcmp(arg, "--disassemble-flugan")) {
 				args.disassemble_flugan = true;
 				continue;
@@ -164,10 +164,10 @@ void parse_args(int argc, char *argv[])
 				args.assemble = true;
 				continue;
 			}
-			// if (!strcmp(arg, "-f") || !strcmp(arg, "--force")) {
-			// 	args.force = true;
-			// 	continue;
-			// }
+			if (!strcmp(arg, "-f") || !strcmp(arg, "--force")) {
+				args.force = true;
+				continue;
+			}
 			if (!strcmp(arg, "-V") || !strcmp(arg, "--validate")) {
 				args.validate = true;
 				continue;
@@ -623,7 +623,7 @@ int main(int argc, char *argv[])
 
 	for (string const &filename : args.files) {
 		try {
-			rc = process(&filename) || rc;
+			rc |= process(&filename);
 		} catch (const exception & e) {
 			LogInfo("\n*** UNHANDLED EXCEPTION: %s\n", e.what());
 			rc = EXIT_FAILURE;
