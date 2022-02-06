@@ -100,6 +100,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <stdexcept>
 
 #pragma warning(push)
 #pragma warning(disable : 4702)

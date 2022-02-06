@@ -1,6 +1,7 @@
 #ifndef HLSLCC_H_
 #define HLSLCC_H_
 
+#include <string>
 #include <vector>
 #include <map>
 
@@ -65,29 +66,29 @@ typedef enum SPECIAL_NAME
     NAME_IS_FRONT_FACE = 9,
     NAME_SAMPLE_INDEX = 10,
     // The following are added for D3D11
-    NAME_FINAL_QUAD_U_EQ_0_EDGE_TESSFACTOR = 11, 
-    NAME_FINAL_QUAD_V_EQ_0_EDGE_TESSFACTOR = 12, 
-    NAME_FINAL_QUAD_U_EQ_1_EDGE_TESSFACTOR = 13, 
-    NAME_FINAL_QUAD_V_EQ_1_EDGE_TESSFACTOR = 14, 
-    NAME_FINAL_QUAD_U_INSIDE_TESSFACTOR = 15, 
-    NAME_FINAL_QUAD_V_INSIDE_TESSFACTOR = 16, 
-    NAME_FINAL_TRI_U_EQ_0_EDGE_TESSFACTOR = 17, 
-    NAME_FINAL_TRI_V_EQ_0_EDGE_TESSFACTOR = 18, 
-    NAME_FINAL_TRI_W_EQ_0_EDGE_TESSFACTOR = 19, 
-    NAME_FINAL_TRI_INSIDE_TESSFACTOR = 20, 
+    NAME_FINAL_QUAD_U_EQ_0_EDGE_TESSFACTOR = 11,
+    NAME_FINAL_QUAD_V_EQ_0_EDGE_TESSFACTOR = 12,
+    NAME_FINAL_QUAD_U_EQ_1_EDGE_TESSFACTOR = 13,
+    NAME_FINAL_QUAD_V_EQ_1_EDGE_TESSFACTOR = 14,
+    NAME_FINAL_QUAD_U_INSIDE_TESSFACTOR = 15,
+    NAME_FINAL_QUAD_V_INSIDE_TESSFACTOR = 16,
+    NAME_FINAL_TRI_U_EQ_0_EDGE_TESSFACTOR = 17,
+    NAME_FINAL_TRI_V_EQ_0_EDGE_TESSFACTOR = 18,
+    NAME_FINAL_TRI_W_EQ_0_EDGE_TESSFACTOR = 19,
+    NAME_FINAL_TRI_INSIDE_TESSFACTOR = 20,
     NAME_FINAL_LINE_DETAIL_TESSFACTOR = 21,
     NAME_FINAL_LINE_DENSITY_TESSFACTOR = 22,
 } SPECIAL_NAME;
 
 
-typedef enum { 
+typedef enum {
   INOUT_COMPONENT_UNKNOWN  = 0,
   INOUT_COMPONENT_UINT32   = 1,
   INOUT_COMPONENT_SINT32   = 2,
   INOUT_COMPONENT_FLOAT32  = 3
 } INOUT_COMPONENT_TYPE;
 
-typedef enum MIN_PRECISION { 
+typedef enum MIN_PRECISION {
   MIN_PRECISION_DEFAULT    = 0,
   MIN_PRECISION_FLOAT_16   = 1,
   MIN_PRECISION_FLOAT_2_8  = 2,
@@ -164,7 +165,7 @@ typedef struct ResourceBinding_TAG
     uint32_t ui32NumSamples;
 } ResourceBinding;
 
-typedef enum _SHADER_VARIABLE_TYPE { 
+typedef enum _SHADER_VARIABLE_TYPE {
   SVT_VOID                         = 0,
   SVT_BOOL                         = 1,
   SVT_INT                          = 2,
@@ -215,7 +216,7 @@ typedef enum _SHADER_VARIABLE_TYPE {
   SVT_FORCE_DWORD                  = 0x7fffffff
 } SHADER_VARIABLE_TYPE;
 
-typedef enum _SHADER_VARIABLE_CLASS { 
+typedef enum _SHADER_VARIABLE_CLASS {
   SVC_SCALAR               = 0,
   SVC_VECTOR               = ( SVC_SCALAR + 1 ),
   SVC_MATRIX_ROWS          = ( SVC_VECTOR + 1 ),
@@ -354,7 +355,7 @@ struct ShaderInfo
 		ui32MinorVersion(0),
 		psInputSignatures(0),
 		ui32NumInputSignatures(0),
-		psOutputSignatures(0), 
+		psOutputSignatures(0),
 		ui32NumOutputSignatures(0),
 		psPatchConstantSignatures(0),
 		ui32NumPatchConstantSignatures(0),

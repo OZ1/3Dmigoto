@@ -1481,8 +1481,7 @@ static vector<DWORD> assembleIns(string s)
 	unsigned msaa_samples = 0;
 
 	if (hackMap.find(s) != hackMap.end()) {
-		auto v = hackMap[s];
-		return v;
+		return hackMap[s];
 	}
 	DWORD op = 0;
 	shader_ins* ins = (shader_ins*)&op;

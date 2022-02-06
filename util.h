@@ -1,5 +1,7 @@
 #pragma once
 
+#include <typeinfo>
+
 #include <ctype.h>
 #include <wchar.h>
 #include <string>
@@ -74,7 +76,7 @@ extern CRITICAL_SECTION resource_creation_mode_lock;
 
 // -----------------------------------------------------------------------------------------------
 
-// Create hash code for textures or buffers.  
+// Create hash code for textures or buffers.
 
 // Wrapped in try/catch because it can crash in Dirt Rally,
 // because of noncontiguous or non-mapped memory for the texture.  Not sure this
@@ -83,7 +85,7 @@ extern CRITICAL_SECTION resource_creation_mode_lock;
 // Now switching to use crc32_append instead of fnv_64_buf for performance. This
 // implementation of crc32c uses the SSE 4.2 instructions in the CPU to calculate,
 // and is some 30x faster than fnv_64_buf.
-// 
+//
 // Not changing shader hash calculation as there are thousands of shaders already
 // in the field, and there is no known bottleneck for that calculation.
 
@@ -158,25 +160,25 @@ static char *readStringParameter(wchar_t *val)
 	return start;
 }
 
-static void BeepSuccess() 
+static void BeepSuccess()
 {
 	// High beep for success
 	Beep(1800, 400);
 }
 
-static void BeepShort() 
+static void BeepShort()
 {
 	// Short High beep
 	Beep(1800, 100);
 }
 
-static void BeepFailure() 
+static void BeepFailure()
 {
 	// Bonk sound for failure.
 	Beep(200, 150);
 }
 
-static void BeepFailure2() 
+static void BeepFailure2()
 {
 	// Brnk, dunk sound for failure.
 	Beep(300, 200); Beep(200, 150);
@@ -801,7 +803,7 @@ static string BinaryToAsmText(const void *pShaderBytecode, size_t BytecodeLength
 //		return "";
 //
 //	string shaderModel;
-//	
+//
 //	switch (shader->eShaderType)
 //	{
 //	case PIXEL_SHADER:
@@ -894,7 +896,7 @@ static HRESULT CreateTextFile(wchar_t *fullPath, string *asmText, bool overwrite
 
 // Specific variant to name files consistently, so we know they are Asm text.
 
-static HRESULT CreateAsmTextFile(wchar_t* fileDirectory, UINT64 hash, const wchar_t* shaderType, 
+static HRESULT CreateAsmTextFile(wchar_t* fileDirectory, UINT64 hash, const wchar_t* shaderType,
 	const void *pShaderBytecode, size_t bytecodeLength, bool patch_cb_offsets)
 {
 	string asmText = BinaryToAsmText(pShaderBytecode, bytecodeLength, patch_cb_offsets);
